@@ -12,10 +12,10 @@ export default function Home() {
           <Image src="/living-icon.svg" width={70} height={70} alt="resource" />
           <h1 className="font-semibold">Community Engagement</h1>
           <p className="text-justify md:line-clamp-4">
-            GVEHAI fosters a strong sense of community among residents of
+            {`GVEHAI fosters a strong sense of community among residents of
             Gulfview Executive Homes. As a member, you'll have the opportunity
             to participate in various community events, meetings, and
-            activities.
+            activities.`}
           </p>
         </div>
         <div className="flex flex-col text-gray items-center min-h-[100vh] gap-3 p-4 justify-center snap-start grow">

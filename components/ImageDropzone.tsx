@@ -53,7 +53,7 @@ const ImageDropzone: React.FC<ImageDropzoneProps> = ({
       >
         <input {...getInputProps()} />
         {!files.length && (
-          <p className="text-slate-400">Drag 'n' drop image here</p>
+          <p className="text-slate-400">{`Drag 'n' drop image here`}</p>
         )}
         {files.map((file, key) => {
           const modFile = file as File & { preview: string };
