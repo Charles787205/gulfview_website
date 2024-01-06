@@ -1,9 +1,13 @@
 import { ServicesCard } from "@/components";
+
 const ServicesPage = () => {
   return (
-    <div className="flex flex-col justify-center items-center overflow-auto mb-10">
-      <h1 className="font-bold text-primary-blue text-[40px]">Services</h1>
-      <div className="grid grid-cols-1 overflow-auto md:grid-cols-2 xl:grid-cols-3 grid-row-3 gap-3 lg:gap-10 p-10 lg:w-[80%] w-[100%] ">
+    <div className="overflow-y-auto  max-h-[calc(100vh-65px)]">
+      <h1 className="font-bold   text-center text-primary-blue text-[40px]">
+        Services
+      </h1>
+
+      <div className="grid grid-cols-1 mx-auto md:grid-cols-2 xl:grid-cols-3 grid-row-3 gap-3 lg:gap-10 p-10 lg:w-[95%] w-[100%] ">
         <ServicesCard
           title="Community Guidlines"
           description="Explore our comprehensive guide to community rules and guidelines

@@ -5,12 +5,12 @@ import { useEffect, useState, Suspense, lazy } from "react";
 import { UserType } from "@/types";
 import LoadingRing from "@/components/LoadingRing";
 
-const prisma = new PrismaClient();
 const ProfilePage = () => {
   const [user, setUser] = useState<UserType | null>(null);
   const { data: session } = useSession();
   const [isEdit, setIsEdit] = useState(false);
   const [isFieldNull, setIsFieldNull] = useState(false);
+
   useEffect(() => {
     const getProfile = async () => {
       const response = await fetch(`api/user/profile`, {
@@ -26,7 +26,7 @@ const ProfilePage = () => {
   if (user) {
   }
 
-  const ProfileCard = lazy(() => import("@/components/ProfileCard"));
+  const ProfileCard = lazy(() => import("@/components/cards/ProfileCard"));
 
   const handleClick = (firstName: string, lastName: string) => {
     if (isEdit) {
@@ -36,7 +36,6 @@ const ProfilePage = () => {
         user!.lastName = lastName;
       }
       const patchUser = async () => {
-        console.log(user);
         const response = await fetch("api/user/profile", {
           method: "PATCH",
           body: JSON.stringify(user),

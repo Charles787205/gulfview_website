@@ -2,8 +2,6 @@
 import { PrismaClient } from "@prisma/client";
 import { useState, useEffect } from "react";
 import {
-  signIn,
-  signOut,
   useSession,
   getProviders,
   LiteralUnion,
@@ -21,7 +19,7 @@ const Navbar = () => {
 
   const { data: session } = useSession();
   const [isAdmin, setIsAdmin] = useState(false);
-  console.log("Navbar");
+
   useEffect(() => {
     const setUpProviders = async () => {
       const response = await getProviders();
@@ -35,7 +33,7 @@ const Navbar = () => {
     const getIfAdmin = async () => {
       const response = await fetch("/api/user/profile");
       const user = await response.json();
-      console.log(user);
+
       setIsAdmin(user.position != null);
     };
 

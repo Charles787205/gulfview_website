@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { Hero, RecentActivities } from "@/components";
-
+import { Poppins } from "next/font/google";
+const inter = Poppins({ weight: "500", subsets: ["latin"] });
 export default function Home() {
   return (
     <main className="overflow-y-auto snap-mandatory snap-start snap-y h-[100vh]">
       <Hero />
+
       <section className="grid md:grid-cols-3 flex-col md:flex-row justify-center items-center min-h-[100vh]  snap-mandatory snap-y  snap-start">
         <div className="flex flex-col text-gray items-center min-h-[100vh] gap-3 p-4 justify-center snap-start grow">
           <Image src="/living-icon.svg" width={70} height={70} alt="resource" />

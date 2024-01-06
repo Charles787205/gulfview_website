@@ -2,29 +2,17 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { options } from "../../auth/[...nextauth]/options";
-
+import firebaseApp from "@/utils/FirebaseConfig";
+import { getFirestore } from "firebase-admin/firestore";
 export async function GET() {
   const session = await getServerSession(options);
+  const db = getFirestore(firebaseApp);
 
   if (session) {
-    const prisma = new PrismaClient();
-    const user = await prisma.user.findUnique({
-      where: {
-        id: session.user.id,
-      },
-    });
-    const officer = await prisma.officerProfile.findUnique({
-      where: {
-        userId: user?.id,
-      },
-    });
-    if (officer != null) {
-      const newUser = { ...user, position: officer.position };
-      console.log(newUser);
-      return Response.json(newUser);
-    }
+    //check if user is admin if officer add the position and return
+    const userRef = await db.collection("users").doc(session.user.id).get();
 
-    return Response.json(user);
+    return Response.json({ ...userRef.data() });
   }
   return Response.json({});
 }
@@ -35,15 +23,12 @@ export async function POST({ params }: { params: { id: number } }) {
 
 export async function PATCH(request: NextRequest) {
   const user = await request.json();
-  const prisma = new PrismaClient();
-  const newUser = await prisma.user.update({
-    where: {
-      id: user.id,
-    },
-    data: {
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-    },
+  console.log(user);
+  const db = getFirestore(firebaseApp);
+  await db.collection("users").doc(user.id).update({
+    firstName: user.firstName,
+    lastName: user.lastName,
   });
-  return Response.json(newUser);
+
+  return Response.json({});
 }

@@ -23,7 +23,11 @@ body {
   flex-direction: column;
   overflow: hidden;
   max-height: 100vh;
-  @apply bg-slate-100;
+  @apply bg-slate-100 min-h-screen;
+}
+[data-overlay-container="true"] {
+  height: 100vh;
+  width: 100%;
 }
 @media only screen and (max-width: 768px) {
   ::-webkit-scrollbar {
@@ -48,7 +52,7 @@ body {
     background: #555;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 500px) {
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -75,7 +79,7 @@ body {
   @apply p-4 hover:bg-primary-blue hover:text-white text-primary-blue font-bold text-[20px] md:text-[24px] flex items-center cursor-pointer ease-in-out duration-300;
 }
 .sign-in-button {
-  @apply rounded-full px-4 py-1 pt-0 border-primary-blue border-2 min-w-[130px] max-h-[50px] ml-auto mr-3 text-[20px] hover:bg-primary-blue hover:text-white flex flex-col items-center justify-center  ease-in-out duration-300 md:text-[24px];
+  @apply rounded-full px-2 py-1  shadow shadow-neutral-600 min-w-[130px] max-h-[50px] ml-auto mr-3 text-[20px] hover:bg-primary-blue hover:text-white flex  items-center justify-center gap-2  ease-in-out duration-300 md:text-[22px];
 }
 
 .dropdown-menu-show {
@@ -96,15 +100,15 @@ body {
 .lds-ring {
   display: inline-block;
   position: relative;
-  width: 116px;
-  height: 116px;
+  min-width: 50px;
+  min-height: 50px;
 }
 .lds-ring div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 100px;
-  height: 100px;
+  min-width: 35px;
+  min-height: 35px;
   margin: 8px;
   border: 8px solid #be3030;
   border-radius: 50%;
@@ -134,3 +138,10 @@ body {
 /* SidePanel Admin */
 
 /* End SidePanel Admin*/
+/* Used in various pages like in booking page and maintenance request */
+.page-input {
+  @apply shadow-inner shadow-slate-400 rounded p-1;
+}
+.swal2-popup {
+  font-family: inherit;
+}

@@ -1,8 +1,15 @@
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import CredentitalsProvider from "next-auth/providers/credentials";
+import firebaseApp from "@/utils/FirebaseConfig";
+import { getFirestore } from "firebase-admin/firestore";
+import { UserType } from "@/types";
+import { GoogleProfile } from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
+import { ref } from "firebase/database";
 const prisma = new PrismaClient();
+
+const db = getFirestore(firebaseApp);
+
 export const options: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -14,29 +21,60 @@ export const options: NextAuthOptions = {
   session: { strategy: "jwt" },
   callbacks: {
     async session({ session }) {
-      const sessionUser = await prisma.user.findUnique({
-        where: { email: session.user?.email! },
-      });
-      const new_session_user = { ...session.user, id: sessionUser?.id };
-      session.user = new_session_user;
+      //get the user in database and add id in the new session.
+      const userDoc = await db
+        .collection("users")
+        .where("email", "==", session.user?.email)
+        .get();
 
+      if (userDoc.size > 0) {
+        session.user = { ...session.user, id: userDoc.docs[0].id };
+      }
       return session;
     },
     async signIn({ profile }) {
       try {
-        const userExist = await prisma.user.findUnique({
-          where: {
-            email: profile!.email,
-          },
-        });
-        if (!userExist) {
-          await prisma.user.create({
-            data: {
-              email: profile?.email!,
-              username: profile!.name!.replace(" ", "").toLowerCase(),
-            },
+        //check user if it exist if not create new user in db
+
+        //Convert sa googleProfile para makuha ang first_name, last_name etc -.-
+        var gProfile: GoogleProfile = {
+          aud: "",
+          azp: "",
+          email_verified: false,
+          exp: 0,
+          family_name: "",
+          given_name: "",
+          hd: "",
+          iat: 0,
+          iss: "",
+          jti: "",
+          nbf: 0,
+          picture: "",
+          email: "",
+          name: "",
+          sub: "",
+        };
+        gProfile = { ...gProfile, ...profile };
+        console.log("Goooogle Profile", { gProfile });
+
+        const userRef = db.collection("users");
+        const user = await userRef.where("email", "==", profile!.email).get();
+        if (user.size == 0) {
+          const userInfo: UserType = {
+            id: null,
+            firstName: gProfile.given_name,
+            email: gProfile.email,
+            lastName: gProfile.family_name,
+            position: null,
+          };
+          userRef.add({ ...userInfo }).then((ref) => {
+            // add the user then get it then update ^_^
+            ref.get().then((doc) => {
+              ref.update({ id: doc.id });
+            });
           });
         }
+        console.log(userRef);
         return true;
       } catch (error) {
         console.log(error);

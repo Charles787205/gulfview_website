@@ -61,10 +61,7 @@ const ProfileCard = ({
         <h1>Email:</h1>
         <p className="ml-3">{user?.email}</p>
       </div>
-      <div className="flex items-center">
-        <h1>Username:</h1>
-        <p className="ml-3">{user?.username}</p>
-      </div>
+
       {user?.position && (
         <div className="flex items-center">
           <h1>Position:</h1>

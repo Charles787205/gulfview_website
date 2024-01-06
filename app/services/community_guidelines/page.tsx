@@ -2,11 +2,11 @@ import React from "react";
 
 const CummunityGuidlinesPage = () => {
   return (
-    <div className="flex items-center flex-col overflow-auto mt-11">
-      <h1 className="md:text-[40px] text-[30px] font-bold">
-        Community Guidelines
-      </h1>
-      <ul className="text-[20px] w-[80%] mt-8 list-decimal flex flex-col gap-2">
+    <div className="flex flex-col items-center overflow-auto py-5 max-w-full max-h-[calc(100vh-50px)]">
+      <ul className="text-[20px] w-[80%] list-decimal flex flex-col gap-2">
+        <h1 className="md:text-[40px]  mb-5 text-[35px] font-bold">
+          Community Guidelines
+        </h1>
         <li>Entry of motorcycles with bravo muffler is prohibited.</li>
         <li>
           Motor riders/outsiders must remove their helmets upon entry and in

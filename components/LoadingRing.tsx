@@ -9,13 +9,12 @@ const LoadingRing = ({
 }) => {
   return (
     <div className="flex flex-col items-center">
-      <div className={`lds-ring w-[${width}] h-[${height}]`}>
-        <div className={`w-[${width - 16}] h-[${height - 16}]`}></div>
-        <div className={`w-[${width - 16}] h-[${height - 16}]`}></div>
-        <div className={`w-[${width - 16}] h-[${height - 16}]`}></div>
-        <div className={`w-[${width - 16}] h-[${height - 16}]`}></div>
+      <div className="lds-ring" style={{ width: width, height: height }}>
+        <div style={{ width: width - 16, height: height - 16 }}></div>
+        <div style={{ width: width - 16, height: height - 16 }}></div>
+        <div style={{ width: width - 16, height: height - 16 }}></div>
       </div>
-      <h2 className="font-bold">Loading{` ${title ? title : ""}`}</h2>
+      <h2 className="font-bold">{` ${title ? title : ""}`}</h2>
     </div>
   );
 };

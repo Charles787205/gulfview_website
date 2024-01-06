@@ -7,7 +7,6 @@ export default withAuth(function middleware(req) {}, {
         console.log("middleware fail");
         return false;
       } else {
-        console.log("middleware");
       }
       return true;
     },

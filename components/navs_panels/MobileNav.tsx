@@ -9,9 +9,14 @@ import { useOutsideAlerter } from "@/utils/OutsideClick";
 const MobileNav = ({ session, providers }: NavProps) => {
   const [menuOpened, setMenuOpened] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  useOutsideAlerter(wrapperRef, () => {
-    setMenuOpened(false);
-  });
+  const menuRef = useRef(null);
+  useOutsideAlerter(
+    wrapperRef,
+    () => {
+      setMenuOpened(false);
+    },
+    menuRef
+  );
   return (
     <>
       <div
@@ -19,10 +24,11 @@ const MobileNav = ({ session, providers }: NavProps) => {
         onClick={() => {
           setMenuOpened(!menuOpened);
         }}
+        ref={menuRef}
       >
-        <span className="py-[3px] px-4 bg-primary-blue rounded"></span>
-        <span className="py-[3px] px-4 bg-primary-blue rounded"></span>
-        <span className="py-[3px] px-4 bg-primary-blue rounded"></span>
+        <span className="py-[3px] px-3 bg-primary-blue rounded"></span>
+        <span className="py-[3px] px-3 bg-primary-blue rounded"></span>
+        <span className="py-[3px] px-3 bg-primary-blue rounded"></span>
       </div>
       <div
         className={`side-menu ${menuOpened ? "left-[0px]" : "left-[-15rem]"}`}
@@ -42,8 +48,13 @@ const MobileNav = ({ session, providers }: NavProps) => {
         >
           Services
         </Link>
-
-        <li className="nav_link">Officers</li>
+        <Link
+          href="/officers"
+          className="nav_link"
+          onClick={() => setMenuOpened(false)}
+        >
+          Officers
+        </Link>
         <Link
           href="/news"
           className="nav_link"

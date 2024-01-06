@@ -6,26 +6,27 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
+  id    Int     @id  @map("_id")
   email String  @unique
   username String
   firstName String?
   lastName String?
   officer_profile OfficerProfile?
+  booking Booking[]
 }
 
-model OfficerProfile {
+model OfficerProfile {np
   user User @relation(fields: [userId], references:[id],onDelete: Cascade)
-  userId Int @id @unique
+  userId Int @id @map("_id")
   position Position
 }
 model News {
-  id Int @id @default(autoincrement())
+  id Int @id @map("_id")
   headline String 
   description String
   images Images[]
@@ -33,12 +34,24 @@ model News {
 }
 
 model Images {
-  id Int @id @default(autoincrement())
+  id Int @id  @map("_id")
   name String @unique
   newsId Int 
   url String
   news News @relation(fields: [newsId], references: [id])
 }
+model Booking {
+  id Int @id  @map("_id")
+  user User @relation(fields: [userId], references:[id], onDelete: Cascade)
+  userId Int 
+  name String
+  amenity_type String 
+  description String
+  date_time DateTime
+  hours Int
+  date_created DateTime @default(now())
+}
+
 enum Position {
   PRESIDENT
   VICE_PRESIDENT
