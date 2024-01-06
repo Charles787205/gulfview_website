@@ -83,7 +83,7 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="max-h-[calc(100vh-50px)] md:p-4 overflow-y-auto">
+    <div className="md:p-4 h-auto">
       <SubmitModal
         disclosure={submitDisclosure}
         status={status}

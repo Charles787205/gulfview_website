@@ -1,9 +1,9 @@
 import React from "react";
 
-const CummunityGuidlinesPage = () => {
+const CommunityGuidelinesPage = () => {
   return (
-    <div className="flex flex-col items-center overflow-auto py-5 max-w-full max-h-[calc(100vh-50px)]">
-      <ul className="text-[20px] h-auto w-[80%] list-decimal flex flex-col gap-2">
+    <div className="flex flex-col items-center  py-5 max-w-full h-auto">
+      <ul className="text-[20px]  w-[80%] list-decimal flex flex-col gap-2">
         <h1 className="md:text-[40px]  mb-5 text-[35px] font-bold">
           Community Guidelines
         </h1>
@@ -47,7 +47,7 @@ const CummunityGuidlinesPage = () => {
   );
 };
 
-export default CummunityGuidlinesPage;
+export default CommunityGuidelinesPage;
 
 /*Board Resolution No. 015, Series of 2023, the following RULES AND REGULATIONS shall be strictly implemented inside Gulfview Executive Homes effective OCTOBER 1, 2023:
 1. Entry of motorcycles with bravo muffler is prohibited.

@@ -2,7 +2,7 @@ import { ServicesCard } from "@/components";
 
 const ServicesPage = () => {
   return (
-    <div className="overflow-y-auto  max-h-[calc(100vh-50px)]">
+    <>
       <h1 className="font-bold   text-center text-primary-blue text-[40px]">
         Services
       </h1>
@@ -43,7 +43,7 @@ const ServicesPage = () => {
           link="/services/event_calendar"
         />
       </div>
-    </div>
+    </>
   );
 };
 
