@@ -148,7 +148,7 @@ const BookingPage = () => {
           min={new Date().getDate()}
           title="Date of usage"
         />
-        <div className="flex justify-evenly">
+        <div className="flex flex-col md:flex-row justify-evenly">
           <div className="">
             <h1 className="text-[20px]">Time:</h1>
             <input
