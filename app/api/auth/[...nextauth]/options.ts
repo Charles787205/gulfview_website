@@ -4,9 +4,6 @@ import firebaseApp from "@/utils/FirebaseConfig";
 import { getFirestore } from "firebase-admin/firestore";
 import { UserType } from "@/types";
 import { GoogleProfile } from "next-auth/providers/google";
-import { PrismaClient } from "@prisma/client";
-import { ref } from "firebase/database";
-const prisma = new PrismaClient();
 
 const db = getFirestore(firebaseApp);
 

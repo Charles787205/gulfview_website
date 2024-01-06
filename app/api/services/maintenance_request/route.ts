@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { maintenanceRequestDetailsType } from "@/types";
 import firebaseApp from "@/utils/FirebaseConfig";
 import { getFirestore } from "firebase-admin/firestore";
-import { getServerSession } from "next-auth";
-import { options } from "../../auth/[...nextauth]/options";
-import firebase from "firebase/compat/app";
 
 export async function POST(request: NextRequest) {
   const data: maintenanceRequestDetailsType = await request.json();
