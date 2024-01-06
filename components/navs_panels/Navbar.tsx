@@ -17,7 +17,7 @@ const Navbar = () => {
     ClientSafeProvider
   > | null>(null);
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Navbar = () => {
     };
 
     getIfAdmin();
-  }, [isSession]);
+  }, [status]);
 
   return (
     <nav className="min-h-[50px] md:min-h-[60px]   sticky top-0 left-0 w-[100%] z-[100] bg-slate-100 flex shadow-md">

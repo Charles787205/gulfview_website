@@ -3,7 +3,7 @@ import React from "react";
 const CummunityGuidlinesPage = () => {
   return (
     <div className="flex flex-col items-center overflow-auto py-5 max-w-full max-h-[calc(100vh-50px)]">
-      <ul className="text-[20px] w-[80%] list-decimal flex flex-col gap-2">
+      <ul className="text-[20px] h-auto w-[80%] list-decimal flex flex-col gap-2">
         <h1 className="md:text-[40px]  mb-5 text-[35px] font-bold">
           Community Guidelines
         </h1>

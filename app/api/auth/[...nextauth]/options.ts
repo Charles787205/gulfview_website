@@ -53,10 +53,9 @@ export const options: NextAuthOptions = {
             });
           });
         }
-        console.log(userRef);
+
         return true;
       } catch (error) {
-        console.log(error);
         return false;
       }
     },

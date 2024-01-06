@@ -2,12 +2,12 @@ import { ServicesCard } from "@/components";
 
 const ServicesPage = () => {
   return (
-    <div className="overflow-y-auto  max-h-[calc(100vh-65px)]">
+    <div className="overflow-y-auto  max-h-[calc(100vh-50px)]">
       <h1 className="font-bold   text-center text-primary-blue text-[40px]">
         Services
       </h1>
 
-      <div className="grid grid-cols-1 mx-auto md:grid-cols-2 xl:grid-cols-3 grid-row-3 gap-3 lg:gap-10 p-10 lg:w-[95%] w-[100%] ">
+      <div className="grid grid-cols-1 h-auto mx-auto md:grid-cols-2 xl:grid-cols-3 grid-row-3 gap-3 lg:gap-10 p-10 lg:w-[95%] w-[100%] ">
         <ServicesCard
           title="Community Guidelines"
           description="Explore our comprehensive guide to community rules and guidelines
