@@ -7,7 +7,9 @@ import LoadingRing from "@/components/LoadingRing";
 
 const ProfilePage = () => {
   const [user, setUser] = useState<UserType | null>(null);
-  const { data: session } = useSession();
+  const { data: session } = useSession({
+    required: true,
+  });
   const [isEdit, setIsEdit] = useState(false);
   const [isFieldNull, setIsFieldNull] = useState(false);
 
@@ -22,7 +24,7 @@ const ProfilePage = () => {
     };
 
     getProfile();
-  }, [session != null]);
+  }, []);
   if (user) {
   }
 

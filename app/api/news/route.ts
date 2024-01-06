@@ -27,31 +27,9 @@ const transferImage = async (file: File, rawFilename: String) => {
 };
 
 export async function POST(request: NextRequest) {
-  const session = await getServerSession(options);
-
-  if (session) {
-    const formData = await request.formData();
-    const file = formData.get("file") as File;
-    if (!file) {
-      return NextResponse.json({ error: "No files recieved" }, { status: 400 });
-    }
-    const rawFilename = Date.now() + session.user.id;
-    transferImage(file, rawFilename).then((filename) => {
-      if (filename) {
-        //if successfully uploaded then upload to database
-
-        return NextResponse.json({ Message: "Success", status: 201 });
-      } else {
-        return NextResponse.json({ Message: "Failed", status: 500 });
-      }
-    });
-
-    console.log(rawFilename);
-    console.log(file);
-    return Response.json({ success: "success" });
-  }
+  return NextResponse.json({ Message: "Success", status: 201 });
 }
 
-export async function GET(request: NextRequest | null) {
+export async function GET(request: NextRequest) {
   return NextResponse.json("news");
 }

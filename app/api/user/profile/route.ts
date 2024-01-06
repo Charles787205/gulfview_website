@@ -17,10 +17,6 @@ export async function GET() {
   return Response.json({});
 }
 
-export async function POST({ params }: { params: { id: number } }) {
-  console.log(params.id);
-}
-
 export async function PATCH(request: NextRequest) {
   const user = await request.json();
   console.log(user);

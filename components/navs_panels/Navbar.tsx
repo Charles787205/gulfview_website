@@ -28,7 +28,7 @@ const Navbar = () => {
 
     setUpProviders();
   }, []);
-
+  var isSession = session !== null;
   useEffect(() => {
     const getIfAdmin = async () => {
       const response = await fetch("/api/user/profile");
@@ -38,7 +38,7 @@ const Navbar = () => {
     };
 
     getIfAdmin();
-  }, [session != null]);
+  }, [isSession]);
 
   return (
     <nav className="min-h-[50px] md:min-h-[60px]   sticky top-0 left-0 w-[100%] z-[100] bg-slate-100 flex shadow-md">

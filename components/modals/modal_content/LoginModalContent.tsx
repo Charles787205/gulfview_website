@@ -10,7 +10,6 @@ import {
 } from "next-auth/react";
 import { BuiltInProviderType } from "next-auth/providers/index";
 import { LoadingRing } from "../..";
-import { disclosureType } from "@/types";
 
 const LoginModalContent = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +30,7 @@ const LoginModalContent = () => {
     if (providers != null) {
       setIsLoading(false);
     }
-  }, [providers == null]);
+  }, [providers]);
 
   return (
     <ModalContent className="bg-slate-300 text-primary-blue text-center pb-5">

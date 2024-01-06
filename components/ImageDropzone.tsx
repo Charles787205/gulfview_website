@@ -14,22 +14,25 @@ const ImageDropzone: React.FC<ImageDropzoneProps> = ({
   files,
   setFiles,
 }) => {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    acceptedFiles.forEach((file: File) => {
-      const reader = new FileReader();
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      acceptedFiles.forEach((file: File) => {
+        const reader = new FileReader();
 
-      reader.readAsArrayBuffer(file);
+        reader.readAsArrayBuffer(file);
 
-      if (acceptedFiles?.length) {
-        setFiles((previousFiles: File[]) => [
-          ...acceptedFiles.map((file) =>
-            Object.assign(file, { preview: URL.createObjectURL(file) })
-          ),
-          ...previousFiles,
-        ]);
-      }
-    });
-  }, []);
+        if (acceptedFiles?.length) {
+          setFiles!((previousFiles: File[]) => [
+            ...acceptedFiles.map((file) =>
+              Object.assign(file, { preview: URL.createObjectURL(file) })
+            ),
+            ...previousFiles,
+          ]);
+        }
+      });
+    },
+    [setFiles]
+  );
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop: onDrop,
     noClick: true,
