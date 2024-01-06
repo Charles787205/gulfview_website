@@ -82,59 +82,6 @@ const BookingPage = () => {
     }
   };
 
-  const handleSubmitd = async (e: FormEvent) => {
-    e.preventDefault();
-
-    Swal.fire({
-      title: "Submit",
-      icon: "info",
-      text: "Are you sure to submit",
-      showCancelButton: true,
-      confirmButtonText: "Ok",
-
-      showLoaderOnConfirm: true,
-      preConfirm: async () => {
-        try {
-          checkDate();
-          checkFields();
-        } catch (error) {
-          console.log(error);
-          Swal.showValidationMessage(`${error}`);
-
-          return false;
-        }
-        return await fetch("/api/services/booking", {
-          method: "POST",
-          body: JSON.stringify(bookingDetails),
-        })
-          .then((response) => {
-            console.log(
-              "Response",
-              response.json().then((result) => {
-                console.log(result);
-              })
-            );
-            if (!response.ok) {
-              throw new Error(response.statusText);
-            }
-            return true;
-            return response.json();
-          })
-          .catch((error) => {
-            console.log(error);
-            Swal.showValidationMessage(`Error ${error}`);
-          });
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Success",
-          icon: "success",
-        });
-      }
-    });
-  };
-
   return (
     <div className="max-h-[calc(100vh-50px)] md:p-4 overflow-y-auto">
       <SubmitModal
@@ -146,7 +93,7 @@ const BookingPage = () => {
         onSubmitMessage="Submit booking request to the officers?"
         successMessage="Your request for booking has been submitted to the officers."
       />
-      <div className="md:mt-3 md:w-[700px] m-auto flex flex-col  gap-3 p-4 shadow-lg shadow-neutral-600 bg-slate-200 rounded ">
+      <div className="md:mt-3 md:w-[700px] m-auto flex flex-col  gap-3 p-4 shadow-lg shadow-neutral-600 bg-slate-200 rounded h-auto">
         <h1 className="text-center mt-4 text-[30px]">Amenities Booking</h1>
         <h1 className="text-[20px]">Amenity:</h1>
         <select

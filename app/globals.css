@@ -23,11 +23,14 @@ body {
   flex-direction: column;
   overflow: hidden;
   max-height: 100vh;
-  @apply bg-slate-100 min-h-screen;
+  @apply bg-slate-200 min-h-screen;
 }
 [data-overlay-container="true"] {
   height: 100vh;
   width: 100%;
+}
+.button {
+  @apply hover:scale-105  duration-300;
 }
 @media only screen and (max-width: 768px) {
   ::-webkit-scrollbar {

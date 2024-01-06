@@ -9,7 +9,7 @@ const ServicesPage = () => {
 
       <div className="grid grid-cols-1 mx-auto md:grid-cols-2 xl:grid-cols-3 grid-row-3 gap-3 lg:gap-10 p-10 lg:w-[95%] w-[100%] ">
         <ServicesCard
-          title="Community Guidlines"
+          title="Community Guidelines"
           description="Explore our comprehensive guide to community rules and guidelines
             This resource covers essential topics such as noise restrictions,
             parking regulations, and other community standards. By understanding

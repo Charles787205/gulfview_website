@@ -34,25 +34,7 @@ export const options: NextAuthOptions = {
         //check user if it exist if not create new user in db
 
         //Convert sa googleProfile para makuha ang first_name, last_name etc -.-
-        var gProfile: GoogleProfile = {
-          aud: "",
-          azp: "",
-          email_verified: false,
-          exp: 0,
-          family_name: "",
-          given_name: "",
-          hd: "",
-          iat: 0,
-          iss: "",
-          jti: "",
-          nbf: 0,
-          picture: "",
-          email: "",
-          name: "",
-          sub: "",
-        };
-        gProfile = { ...gProfile, ...profile };
-        console.log("Goooogle Profile", { gProfile });
+        var gProfile = profile as GoogleProfile;
 
         const userRef = db.collection("users");
         const user = await userRef.where("email", "==", profile!.email).get();

@@ -68,7 +68,7 @@ const MaintenanceRequestPage = () => {
         errorMessage={message.error}
         successMessage="Your request has been submitted to the officers."
       />
-      <div className="lg:w-[80%] mx-auto shadow-lg shadow-neutral-500 bg-slate-200 h-full md:h-auto p-5 pb-10 rounded">
+      <div className="lg:w-[80%] mx-auto shadow-lg shadow-neutral-500 bg-slate-200 h-auto p-5 pb-10 rounded">
         <h1 className="text-[40px] font-bold">Maintenance Request</h1>
         <p>
           If you encounter any issues or notice something not working as

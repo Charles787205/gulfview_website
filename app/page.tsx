@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Hero, RecentActivities } from "@/components";
 import { Poppins } from "next/font/google";
+
 const inter = Poppins({ weight: "500", subsets: ["latin"] });
 export default function Home() {
   return (

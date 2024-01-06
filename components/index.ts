@@ -12,6 +12,7 @@ import ImageDropzone from "./ImageDropzone";
 import NewsForm from "./NewsForm";
 import LoginModal from "./modals/modal_content/LoginModalContent";
 import SubmitModal from "./modals/SubmitModal";
+
 export {
   Navbar,
   Hero,
