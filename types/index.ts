@@ -33,11 +33,12 @@ export type BookingPageProps = {
 };
 
 export type UserType = {
-  id: String | null | undefined;
+  id?: String | null;
   email: String;
-  firstName: String | null | undefined;
-  lastName: String | null | undefined;
-  position: String | null | undefined;
+  firstName?: String | null;
+  lastName?: String | null;
+  position?: String | null;
+  image?: String | null;
 };
 
 export type NewsType = {

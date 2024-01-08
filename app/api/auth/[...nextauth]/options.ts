@@ -2,9 +2,9 @@ import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import firebaseApp from "@/utils/FirebaseConfig";
 import { getFirestore } from "firebase-admin/firestore";
-import { UserType } from "@/types";
+import type { UserType } from "@/types";
 import { GoogleProfile } from "next-auth/providers/google";
-
+import { cookies } from "next/headers";
 const db = getFirestore(firebaseApp);
 
 export const options: NextAuthOptions = {
@@ -25,7 +25,11 @@ export const options: NextAuthOptions = {
         .get();
 
       if (userDoc.size > 0) {
-        session.user = { ...session.user, id: userDoc.docs[0].id };
+        session.user = {
+          ...session.user,
+          id: userDoc.docs[0].id,
+          position: userDoc.docs[0].data()["position"],
+        };
       }
       return session;
     },
@@ -35,25 +39,30 @@ export const options: NextAuthOptions = {
 
         //Convert sa googleProfile para makuha ang first_name, last_name etc -.-
         var gProfile = profile as GoogleProfile;
-
+        let user: FirebaseFirestore.DocumentSnapshot<
+          FirebaseFirestore.DocumentData,
+          FirebaseFirestore.DocumentData
+        >;
         const userRef = db.collection("users");
-        const user = await userRef.where("email", "==", profile!.email).get();
-        if (user.size == 0) {
+        let userSnapshot = await userRef
+          .where("email", "==", profile!.email)
+          .get();
+        if (userSnapshot.size == 0) {
+          //if user is new
           const userInfo: UserType = {
             id: null,
             firstName: gProfile.given_name,
             email: gProfile.email,
             lastName: gProfile.family_name,
-            position: null,
+            position: "admin",
+            image: gProfile.picture,
           };
-          userRef.add({ ...userInfo }).then((ref) => {
-            // add the user then get it then update ^_^
-            ref.get().then((doc) => {
-              ref.update({ id: doc.id });
-            });
-          });
-        }
+          const newUserRef = await userRef.add({ ...userInfo });
+          const newUserDoc = await newUserRef.get();
+          await newUserRef.update({ id: newUserDoc.id });
 
+          user = newUserDoc;
+        }
         return true;
       } catch (error) {
         return false;
