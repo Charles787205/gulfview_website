@@ -19,10 +19,8 @@
   @apply m-0 p-0 box-border;
 }
 body {
-  display: flex;
   flex-direction: column;
-  overflow: hidden;
-  max-height: 100vh;
+
   @apply bg-slate-200 min-h-screen;
 }
 [data-overlay-container="true"] {

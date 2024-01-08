@@ -23,9 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <Navbar />
-          <div className="overflow-y-auto  max-h-[calc(100vh-50px)]">
-            {children}
-          </div>
+          {children}
         </Provider>
       </body>
     </html>

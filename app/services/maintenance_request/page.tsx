@@ -59,7 +59,7 @@ const MaintenanceRequestPage = () => {
     }
   };
   return (
-    <div className="md:p-4  lg:p-5 pt-0">
+    <div className="md:p-4 lg:p-5 pt-0">
       <SubmitModal
         disclosure={submitDisclosure}
         status={status}
